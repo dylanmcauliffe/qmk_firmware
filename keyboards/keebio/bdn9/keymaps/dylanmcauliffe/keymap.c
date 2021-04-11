@@ -21,50 +21,40 @@ enum encoder_names {
   _MIDDLE,
 };
 
+#define M_RDPESC	LCA(KC_HOME)
+#define M_NDSKTP	G(C(KC_RGHT))
+#define M_PDSKTP	G(C(KC_LEFT))
+
+#define LAY_DOT		LT(1,KC_DOT)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-        | Knob 1: Vol Dn/Up |      | Knob 2: Page Dn/Up |
-        | Press: Mute       | Home | Press: Play/Pause  |
-        | Hold: Layer 2     | Up   | RGB Mode           |
-        | Left              | Down | Right              |
-     */
     [0] = LAYOUT(
-        KC_MUTE, KC_HOME, KC_MPLY,
-        MO(1)  , KC_UP  , RGB_MOD,
-        KC_LEFT, KC_DOWN, KC_RGHT
+        KC_MPLY,	KC_F16,	 	KC_MUTE,
+        M_PDSKTP,	M_RDPESC,	M_NDSKTP,
+        KC_1,		LAY_DOT,	KC_0
     ),
-    /*
-        | RESET          | N/A  | Media Stop |
-        | Held: Layer 2  | Home | RGB Mode   |
-        | Media Previous | End  | Media Next |
-     */
     [1] = LAYOUT(
-        RESET  , BL_STEP, KC_STOP,
-        _______, KC_HOME, RGB_MOD,
-        KC_MPRV, KC_END , KC_MNXT
+        RESET,		_______,	_______,
+        _______,	_______,	_______,
+        _______,	_______,	_______
     ),
 };
 
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == _LEFT) {
         if (clockwise) {
-            tap_code(KC_VOLU);
+            tap_code(KC_MNXT);
         } else {
-            tap_code(KC_VOLD);
+            tap_code(KC_MPRV);
         }
     }
     else if (index == _MIDDLE) {
-        if (clockwise) {
-            tap_code(KC_DOWN);
-        } else {
-            tap_code(KC_UP);
-        }
     }
     else if (index == _RIGHT) {
         if (clockwise) {
-            tap_code(KC_PGDN);
+            tap_code(KC_VOLU);
         } else {
-            tap_code(KC_PGUP);
+            tap_code(KC_VOLD);
         }
     }
 }
