@@ -1,15 +1,19 @@
-CTPC = yes					# Convert to Proton-C
-
 OLED_DRIVER_ENABLE = yes	# Enables the use of OLED displays
 ENCODER_ENABLE = yes		# Enables the use of one or more encoders
 RGBLIGHT_ENABLE = yes		# Enable keyboard RGB underglow
 
-# CTPC Detection goes here
-# Credit for settings goes here:
-SERIAL_DRIVER = usart
+ifeq ($(strip $(CTPC)), yes)
+	# Credit for the SERIAL and WS2812 settings belongs to:
+	#	Drashna [https://github.com/drashna]
+	#	ItsWaffIe [https://github.com/ItsWaffIe]
 
-WS2812_DRIVER = pwm
-# PR disclaimer goes here:
+	SERIAL_DRIVER = usart
 
-AUDIO_ENABLE = yes
-# End CTPC Detect
+	WS2812_DRIVER = pwm
+	# PWM needs patch to:
+	#	qmk_firmware/platforms/chibios/QMK_PROTON_C/convert_to_proton_c.mk
+	#	qmk_firmware/common_features.mk
+	# See PR at https://github.com/qmk/qmk_firmware/pull/11864
+
+	AUDIO_ENABLE = yes
+endif

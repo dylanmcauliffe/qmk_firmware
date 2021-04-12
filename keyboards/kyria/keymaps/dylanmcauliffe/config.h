@@ -36,7 +36,9 @@
 	
 	#ifdef CONVERT_TO_PROTON_C
 	/*
-		Credit for settings goes here:
+		Credit for the SERIAL settings belongs to:
+			Drashna [https://github.com/drashna]
+			ItsWaffIe [https://github.com/ItsWaffIe]
 	*/
 
 		#define SELECT_SOFT_SERIAL_SPEED 1	// or 0, 2, 3, 4, 5
@@ -69,7 +71,9 @@
 
 	#ifdef CONVERT_TO_PROTON_C
 	/*
-		Credit for settings goes here:
+		Credit for the WS2812 settings belongs to:
+			Drashna [https://github.com/drashna]
+			ItsWaffIe [https://github.com/ItsWaffIe]
 	*/
 
 		#define WS2812_PWM_DRIVER PWMD3

@@ -3,7 +3,9 @@
 
 #ifdef CONVERT_TO_PROTON_C
 /*
-	Credit for settings goes here:
+	Credit for the SERIAL and WS2812 settings belongs to:
+		Drashna [https://github.com/drashna]
+		ItsWaffIe [https://github.com/ItsWaffIe]
 */
 
 	#undef STM32_PWM_USE_TIM3
