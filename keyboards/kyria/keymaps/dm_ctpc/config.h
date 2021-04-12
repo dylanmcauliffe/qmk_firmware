@@ -23,16 +23,17 @@
 	#undef ENCODERS_PAD_A_RIGHT
 	#undef ENCODERS_PAD_B_RIGHT
 
-	#define ENCODERS_PAD_A { D2 }
+	// Swapped A/B pads to correct clockwise detection in keymap.c
+	#define ENCODERS_PAD_A { D2 } //modified pin
 	#define ENCODERS_PAD_B { C6 }
 	#define ENCODERS_PAD_A_RIGHT { C6 }
-	#define ENCODERS_PAD_B_RIGHT { D2 }
+	#define ENCODERS_PAD_B_RIGHT { D2 } //modified pin
 #endif
 
 #ifdef SPLIT_KEYBOARD
 	// See readme.md for required hardware changes
 	#undef SOFT_SERIAL_PIN
-	#define SOFT_SERIAL_PIN D3
+	#define SOFT_SERIAL_PIN D3 //modified pin
 	
 	#ifdef CONVERT_TO_PROTON_C
 	/*
@@ -61,7 +62,7 @@
 #ifdef RGBLIGHT_ENABLE
 	// See readme.md for required hardware changes
 	#undef RGB_DI_PIN
-	#define RGB_DI_PIN B5
+	#define RGB_DI_PIN B5 //modified pin
 
 	#define RGBLIGHT_ANIMATIONS
 	#define RGBLIGHT_HUE_STEP 8
