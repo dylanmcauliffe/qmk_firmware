@@ -19,6 +19,8 @@ Changes have been made to the following files:
 	halconf.h
 	mcuconf.h
 
+Changes from PR https://github.com/qmk/qmk_firmware/pull/11864 need to be integrated with your personal QMK fork.
+
 Command to compile with these changes:
 
 	qmk compile -e CTPC=yes -kb kyria -km dm_ctpc
