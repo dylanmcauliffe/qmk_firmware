@@ -27,6 +27,7 @@ enum layers {
     _QWERTY,
     _GAMEPAD,
 	_FUNCTION,
+	_MEDIA,
 	_NAVIGATION,
 	_NUMBER,
     _BLANK,
@@ -101,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC,		KC_Q,		KC_W,		KC_F,		KC_P,		KC_B,															KC_J,		KC_L,		KC_U,		KC_Y,		KC_SCLN,	KC_BSLS,
 		KC_NO,		LCTL_A,		LALT_R,		LSFT_S,		LGUI__T,	KC_G,															KC_M,		RGUI_N,		RSFT_E,		RALT_I,		RCTL_O,		KC_NO,
 		KC_NO,		KC_Z,		KC_X,		KC_C,		KC_D,		KC_V,		KC_NO,		KC_NO,			KC_NO,		KC_NO,		KC_K,		KC_H,		KC_COMM,	KC_DOT,		KC_SLSH,	KC_NO,
-											KC_MPLY,	QWERTY,		NAV_TAB,	NUM_BSPC,	FUN_DEL,		FUN_ENT,	NUM_SPC,	NAV_RGUI,	COLEMAK,	KC_MUTE
+											KC_MPLY,	FUN_DEL,	NUM_BSPC,	NAV_TAB,	QWERTY,			COLEMAK,	NAV_ENT,	NUM_SPC,	FUN_RGUI,	KC_MUTE
 		),
 	[_QWERTY] = LAYOUT(
 		_______,	_______,	_______,	KC_E,		KC_R,		KC_T,															KC_Y,		KC_U,		KC_I,		KC_O,		KC_P,		_______,
@@ -121,10 +122,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	M_UNDO,		M_CUT,		M_COPY,		M_PASTE,	M_REDO,		_______,	_______,		_______,	_______,	KC_PSCR,	_______,	_______,	_______,	_______,	_______,
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
+	[_MEDIA] = LAYOUT(
+		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+    ),
 	[_NAVIGATION] = LAYOUT(
-		_______,	KC_HOME,	KC_PGDN,	KC_UP,		KC_PGUP,	KC_END,															_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_LGUI,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,															_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_LSFT,	M_PDSKTP,	M_RDPESC,	M_NDSKTP,	KC_INS,		_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		M_RDPESC,	KC_HOME,	M_PDSKTP,	M_REDO,		M_NDSKTP,	KC_END,															_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_LEFT,	KC_DOWN,	KC_UP,		KC_RGHT,	KC_PGUP,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	M_UNDO,		M_CUT,		M_COPY,		M_PASTE,	KC_PGDN,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_NUMBER] = LAYOUT(
