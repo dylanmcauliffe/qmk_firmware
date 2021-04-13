@@ -104,10 +104,18 @@
 		#define AUDIO_PIN_ALT A4
 		#define AUDIO_PIN_ALT_AS_NEGATIVE
 	#endif
+	
+//	#define STARTUP_SONG SONG(PLANCK_SOUND)
+//	#define STARTUP_SONG SONG(NO_SOUND)
+
+	#define DEFAULT_LAYER_SONGS { SONG(COLEMAK_SOUND), \
+                                  SONG(QWERTY_SOUND), \
+                                  SONG(PLANCK_SOUND) \
+                                }
 #endif
 
 // Home row mods helpers
-#define TAPPING_TERM 200
+#define TAPPING_TERM 250
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
 #define PERMISSIVE_HOLD

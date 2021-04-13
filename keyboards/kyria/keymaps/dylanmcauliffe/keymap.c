@@ -29,6 +29,7 @@ enum layers {
 	_FUNCTION,
 	_NAVIGATION,
 	_NUMBER,
+	_NUMBER2,
     _BLANK,
 };
 
@@ -52,7 +53,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		case NEXT_BASE_LAYER:
 			if (record->event.pressed) {
 				if (get_mods() & MOD_MASK_SHIFT) {
-					down <= 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
+					down == 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
 				} else {
 					up > highest_base_layer ? default_layer_set(1) : default_layer_set(up);
 				}
@@ -63,7 +64,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				if (get_mods() & MOD_MASK_SHIFT) {
 					up > highest_base_layer ? default_layer_set(1) : default_layer_set(up);
 				} else {
-					down <= 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
+					down == 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
 				}
 			}
 			break;
@@ -98,15 +99,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT(
-		KC_ESC,		KC_Q,		KC_W,		KC_F,		KC_P,		KC_B,															KC_J,		KC_L,		KC_U,		KC_Y,		KC_SCLN,	KC_NO,
-		KC_NO,		LCTL_A,		LSFT_R,		LALT_S,		KC_T,		KC_G,															KC_M,		KC_N,		RALT_E,		RSFT_I,		RCTL_O,		KC_NO,
-		M_RDPESC,	LGUI_Z,		KC_X,		KC_C,		KC_D,		KC_V,		KC_LGUI,	KC_NO,			KC_NO,		KC_RGUI,	KC_K,		KC_H,		KC_COMM,	KC_DOT,		RGUI_SLS,	KC_NO,
-											M_RDPESC,	QWERTY,		FUN_BSPC,	NUM_SPC,	NAV_TAB,		NAV_ENT,	NUM_SPC,	FUN_DEL,	COLEMAK,	KC_MUTE
+		FUN_ESC,	KC_Q,		KC_W,		KC_F,		KC_P,		KC_B,															KC_J,		KC_L,		KC_U,		KC_Y,		KC_SCLN,	KC_BSLS,
+		KC_NO,		LCTL_A,		LALT_R,		LSFT_S,		LGUI__T,	KC_G,															KC_M,		RGUI_N,		RSFT_E,		RALT_I,		RCTL_O,		KC_NO,
+		M_RDPESC,	KC_Z,		KC_X,		KC_C,		KC_D,		KC_V,		KC_NO,		KC_NO,			KC_NO,		KC_NO,		KC_K,		KC_H,		KC_COMM,	KC_DOT,		KC_SLSH,	KC_NO,
+											M_RDPESC,	QWERTY,		NAV_TAB,	NUM_BSPC,	FUN_DEL,		FUN_ENT,	NUM_SPC,	NAV_RGUI,	COLEMAK,	KC_MUTE
 		),
 	[_QWERTY] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	KC_E,		KC_R,		KC_T,															KC_Y,		KC_U,		KC_I,		KC_O,		KC_P,		_______,
+		_______,	_______,	LALT_S,		LSFT_D,		LGUI_F,		_______,														KC_H,		RGUI_J,		RSFT_K,		RALT_L,		RCTL_SCL,	_______,
+		_______,	_______,	_______,	_______,	KC_V,		KC_B,		_______,	_______,		_______,	_______,	KC_N,		KC_M,		_______,	_______,	_______,	_______,
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_GAMEPAD] = LAYOUT(
@@ -116,21 +117,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_FUNCTION] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		RESET,		KC_F9,		KC_F10,		KC_F11,		KC_F12,		KC_PAUS,														_______,	_______,	_______,	_______,	_______,	RESET,
+		_______,	KC_F5,		KC_F6,		KC_F7,		KC_F8,		KC_CAPS,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F1,		KC_F2,		KC_F3,		KC_F4,		KC_PSCR,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+											_______,	_______,	KC_MPRV,	KC_MPLY,	KC_MNXT,		_______,	_______,	_______,	_______,	_______
     ),
 	[_NAVIGATION] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_HOME,	KC_PGDN,	KC_PGUP,	KC_END,		KC_INS,															_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_LEFT,	KC_DOWN,	KC_UP,		KC_RGHT,	KC_ENT,															_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	M_UNDO,		M_CUT,		M_COPY,		M_PASTE,	M_REDO,		_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_NUMBER] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		KC_GRV,		KC_1,		KC_2,		KC_3,		KC_4,		KC_5,															KC_6,		KC_7,		KC_8,		KC_9,		KC_0,		_______,
+		_______,	_______,	_______,	_______,	_______,	KC_LBRC,														KC_RBRC,	_______,	_______,	_______,	KC_QUOT,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	KC_MINS,	_______,	_______,	_______,	_______,
+											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+    ),
+	[_NUMBER2] = LAYOUT(
+		_______,	KC_GRV,		KC_7,		KC_8,		KC_9,		KC_LPRN,														KC_RPRN,	KC_EQL,		_______,	_______,	KC_BSLS,	_______,
+		_______,	_______,	KC_4,		KC_5,		KC_6,		KC_LBRC,														KC_RBRC,	_______,	_______,	_______,	KC_QUOT,	_______,
+		_______,	_______,	_______,	_______,	KC_PLUS,	KC_EQL,		_______,	_______,		_______,	_______,	KC_UNDS,	KC_MINS,	_______,	_______,	_______,	_______,
 											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_BLANK] = LAYOUT(
@@ -164,9 +171,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 			case (uint16_t)pow( 2, _GAMEPAD):
 				if (index == 0) {
 					if (clockwise) {
-						tap_code(KC_WH_D);
+						tap_code(KC_VOLU);
 					} else {
-						tap_code(KC_WH_U); 
+						tap_code(KC_VOLD); 
 					}
 				}
 				break;
