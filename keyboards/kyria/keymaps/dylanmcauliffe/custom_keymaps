@@ -82,6 +82,7 @@
 
 // Layer Triggers
 #define FUN_ESC		LT(_FUNCTION,KC_ESC)
+#define FUN_P00		LT(_FUNCTION,KC_P00)
 #define FUN_ENT		LT(_FUNCTION,KC_ENT)
 #define FUN_BSPC	LT(_FUNCTION,KC_BSPC)
 #define FUN_DEL		LT(_FUNCTION,KC_DEL)
