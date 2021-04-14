@@ -11,6 +11,8 @@ ENCODER_ENABLE = yes		# Enables the use of one or more encoders
 
 RGBLIGHT_ENABLE = yes		# Enable keyboard RGB underglow
 
+TAP_TERM_KEYS_ENABLE = yes
+
 ifeq ($(strip $(CTPC)), yes)
 	# Credit for the SERIAL and WS2812 settings belongs to:
 	#	Drashna [https://github.com/drashna]

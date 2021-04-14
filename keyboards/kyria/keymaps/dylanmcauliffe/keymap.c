@@ -18,29 +18,29 @@
 #include "custom_keymaps"
 
 void keyboard_post_init_user(void) {
-	// default_layer_state set to 0 will cause bitwise shift operations to return invalid results
+	// default_layer_state set to 0 will cause bitwise shift operations on unsigned values to return invalid results
 	if ( default_layer_state == 0 ) { default_layer_set(1); }
 }
 
 enum layers {
-    _COLEMAKDHm = 0,
-    _QWERTY,
-    _GAMEPAD,
+	_COLEMAKDHm = 0,
+	_QWERTY,
+	_GAMEPAD,
 	_FUNCTION,
 	_MEDIA,
 	_NAVIGATION,
 	_NUMBER,
-    _BLANK,
+	_BLANK,
 };
 
 const uint8_t highest_base_layer_index = 2;
 
 enum custom_keycodes {
-	NEXT_BASE_LAYER = SAFE_RANGE,
-	PREV_BASE_LAYER,
-	COLEMAK,
-	QWERTY,
-	GAMEPAD,
+	BL_NEXT = SAFE_RANGE,
+	BL_PREV,
+	BL_CLMK,
+	BL_QWTY,
+	BL_GAME,
 	KC_P00,
 };
 
@@ -50,7 +50,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	uint16_t down = default_layer_state >> 1;
 
 	switch (keycode) {
-		case NEXT_BASE_LAYER:
+		case BL_NEXT:
 			if (record->event.pressed) {
 				if (get_mods() & MOD_MASK_SHIFT) {
 					down == 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
@@ -59,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				}
 			}
 			break;
-		case PREV_BASE_LAYER:
+		case BL_PREV:
 			if (record->event.pressed) {
 				if (get_mods() & MOD_MASK_SHIFT) {
 					up > highest_base_layer ? default_layer_set(1) : default_layer_set(up);
@@ -68,19 +68,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 				}
 			}
 			break;
-		case COLEMAK:
+		case BL_CLMK:
 		  if (record->event.pressed) {
 			set_single_persistent_default_layer(_COLEMAKDHm);
 		  }
 		  return false;
 		  break;
-		case QWERTY:
+		case BL_QWTY:
 		  if (record->event.pressed) {
 			set_single_persistent_default_layer(_QWERTY);
 		  }
 		  return false;
 		  break;
-		case GAMEPAD:
+		case BL_GAME:
 		  if (record->event.pressed) {
 			set_single_persistent_default_layer(_GAMEPAD);
 		  }
@@ -99,52 +99,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT(
-		KC_ESC,		KC_Q,		KC_W,		KC_F,		KC_P,		KC_B,															KC_J,		KC_L,		KC_U,		KC_Y,		KC_SCLN,	KC_BSLS,
-		KC_NO,		LCTL_A,		LALT_R,		LSFT_S,		LGUI__T,	KC_G,															KC_M,		RGUI_N,		RSFT_E,		RALT_I,		RCTL_O,		KC_NO,
-		KC_NO,		KC_Z,		KC_X,		KC_C,		KC_D,		KC_V,		KC_NO,		KC_NO,			KC_NO,		KC_NO,		KC_K,		KC_H,		KC_COMM,	KC_DOT,		KC_SLSH,	KC_NO,
-											KC_MPLY,	FUN_DEL,	NUM_BSPC,	NAV_TAB,	QWERTY,			COLEMAK,	NAV_ENT,	NUM_SPC,	FUN_RGUI,	KC_MUTE
+		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,										KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
+		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,										KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
+		KC_LCTL,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_TAPU,	KC_TAPD,		KC_TAPP,	KC_NO,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	KC_RCTL,
+								M_RDESC,	BL_QWTY,	MO_FUNC,	NM_BSPC,	KC_DEL,		KC_ENT,	NM_SPC,	KC_RGUI,	BL_CLMK,	KC_F16
 		),
 	[_QWERTY] = LAYOUT(
-		_______,	_______,	_______,	KC_E,		KC_R,		KC_T,															KC_Y,		KC_U,		KC_I,		KC_O,		KC_P,		_______,
-		_______,	_______,	LALT_S,		LSFT_D,		LGUI_F,		_______,														KC_H,		RGUI_J,		RSFT_K,		RALT_L,		RCTL_SCL,	_______,
-		_______,	_______,	_______,	_______,	KC_V,		KC_B,		_______,	_______,		_______,	_______,	KC_N,		KC_M,		_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		_______,	_______,	_______,	KC_E,	KC_R,	KC_T,										KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	_______,
+		_______,	_______,	LA_S,	LS_D,	LC_F,	_______,										KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,	_______,
+		_______,	_______,	_______,	_______,	KC_V,	KC_B,	_______,	_______,		_______,	_______,	KC_N,	KC_M,	_______,	_______,	_______,	_______,
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_GAMEPAD] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											KC_F16,		_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+								KC_F16,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_FUNCTION] = LAYOUT(
-		KC_F1,		KC_F2,		KC_F3,		KC_F4,		KC_F5,		KC_F6,															KC_F7,		KC_F8,		KC_F9,		KC_F10,		KC_F11,		KC_F12,
-		_______,	_______,	_______,	_______,	_______,	KC_CAPS,														KC_PAUS,	_______,	_______,	_______,	_______,	_______,
-		_______,	M_UNDO,		M_CUT,		M_COPY,		M_PASTE,	M_REDO,		_______,	_______,		_______,	_______,	KC_PSCR,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PAUS,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_CAPS,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_MEDIA] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_NAVIGATION] = LAYOUT(
-		M_RDPESC,	KC_HOME,	M_PDSKTP,	M_REDO,		M_NDSKTP,	KC_END,															_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_LEFT,	KC_DOWN,	KC_UP,		KC_RGHT,	KC_PGUP,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	M_UNDO,		M_CUT,		M_COPY,		M_PASTE,	KC_PGDN,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		_______,	KC_HOME,	_______,	KC_UP,	_______,	KC_END,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	KC_PGDN,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_NUMBER] = LAYOUT(
-		KC_GRV,		KC_1,		KC_2,		KC_3,		KC_4,		KC_5,															KC_6,		KC_7,		KC_8,		KC_9,		KC_0,		KC_TILD,
-		_______,	_______,	_______,	_______,	_______,	KC_LBRC,														KC_RBRC,	KC_EQL,		_______,	KC_MINS,	KC_QUOT,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		KC_GRV,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	KC_TILD,
+		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,										KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
+		KC_EQL,	_______,	_______,	_______,	_______,	KC_LBRC,	_______,	_______,		_______,	_______,	KC_RBRC,	_______,	_______,	_______,	_______,	KC_UNDS,
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 	[_BLANK] = LAYOUT(
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,														_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-											_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
     ),
 };
 
@@ -179,17 +179,17 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 				break;
 			default:
 				if (index == 0) {
-//					if (clockwise) {
-//						tap_code16(M_NDSKTP);
-//					} else {
-//						tap_code16(M_PDSKTP);
-//					}
 					if (clockwise) {
+						tap_code16(M_NDSKT);
+					} else {
+						tap_code16(M_PDSKT);
+					}
+/*					if (clockwise) {
 						tap_code(KC_MNXT);
 					} else {
 						tap_code(KC_MPRV);
 					}
-				} else if (index == 1) {
+*/				} else if (index == 1) {
 					if (clockwise) {
 						tap_code(KC_VOLU);
 					} else {
