@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include "custom_keymaps"
+#include "custom_keymaps.c"
 
 void keyboard_post_init_user(void) {
 	// default_layer_state set to 0 will cause bitwise shift operations on unsigned values to return invalid results
