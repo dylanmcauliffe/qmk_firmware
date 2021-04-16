@@ -148,6 +148,8 @@
 #define M_NDSKT	G(C(KC_RGHT))
 #define M_PDSKT	G(C(KC_LEFT))
 
+#define M_WNUP		G(S(KC_UP))
+#define M_WNDWN	G(S(KC_DN))
 #define M_WNRGT	G(S(KC_RGHT))
 #define M_WNLFT	G(S(KC_LEFT))
 
