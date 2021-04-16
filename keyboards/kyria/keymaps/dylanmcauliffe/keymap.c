@@ -26,11 +26,11 @@ enum layers {
 	_COLEMAKDHm = 0,
 	_QWERTY,
 	_GAMEPAD,
-	_FUNCTION,
 	_MEDIA,
+	_FUNCTION,
 	_NAVIGATION,
 	_NUMBER,
-	_BLANK,
+	_QUANTUM,
 };
 
 const uint8_t highest_base_layer_index = 2;
@@ -97,55 +97,71 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return true;
 }
 
+bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case NM_SPC:
+            return true;
+        default:
+            return false;
+    }
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT(
 		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,										KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,										KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
-		KC_LCTL,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_TAPU,	KC_TAPD,		KC_TAPP,	KC_NO,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	KC_RCTL,
-								M_RDESC,	BL_QWTY,	MO_FUNC,	NM_BSPC,	KC_DEL,		KC_ENT,	NM_SPC,	KC_RGUI,	BL_CLMK,	KC_F16
+		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_NO,	KC_NO,		KC_NO,	KC_NO,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
+								M_RDESC,	BL_QWTY,	FN_DEL,	NM_BSPC,	NV_TAB,		NV_ENT,	NM_SPC,	FN_RGUI,	BL_CLMK,	KC_F16
 		),
 	[_QWERTY] = LAYOUT(
 		_______,	_______,	_______,	KC_E,	KC_R,	KC_T,										KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	_______,
 		_______,	_______,	LA_S,	LS_D,	LC_F,	_______,										KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,	_______,
 		_______,	_______,	_______,	_______,	KC_V,	KC_B,	_______,	_______,		_______,	_______,	KC_N,	KC_M,	_______,	_______,	_______,	_______,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+	),
 	[_GAMEPAD] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 								KC_F16,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+	),
 	[_FUNCTION] = LAYOUT(
-		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PAUS,										_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_CAPS,										_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PAUS,										KC_SLCK,	_______,	_______,	_______,	_______,	EEP_RST,
+		_______,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_CAPS,										KC_NLCK,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,		RGB_VAD,	RGB_VAI,	_______,	_______,	_______,	_______,	_______,	_______,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+	),
 	[_MEDIA] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+								KC_MPLY,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	KC_MUTE
+	),
 	[_NAVIGATION] = LAYOUT(
-		_______,	KC_HOME,	_______,	KC_UP,	_______,	KC_END,										_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,										_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	KC_PGDN,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_PGUP,	KC_HOME,	KC_UP,	KC_END,	KC_INS,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	M_REDO,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+	),
 	[_NUMBER] = LAYOUT(
 		KC_GRV,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	KC_TILD,
 		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,										KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
 		KC_EQL,	_______,	_______,	_______,	_______,	KC_LBRC,	_______,	_______,		_______,	_______,	KC_RBRC,	_______,	_______,	_______,	_______,	KC_UNDS,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
-	[_BLANK] = LAYOUT(
+	),
+	[_QUANTUM] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
-    ),
+	),
+/*	[_BLANK] = LAYOUT(
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+	),
+*/
 };
 
 #ifdef ENCODER_ENABLE
@@ -163,6 +179,21 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 					tap_code(KC_WH_U);
 				} else {
 					tap_code(KC_WH_D);
+				}
+			}
+			break;
+		case _MEDIA:
+			if (index == 0) {
+				if (clockwise) {
+					tap_code(KC_MNXT);
+				} else {
+					tap_code(KC_MPRV);
+				}
+			} else if (index == 1) {
+				if (clockwise) {
+					tap_code(KC_VOLU);
+				} else {
+					tap_code(KC_VOLD);
 				}
 			}
 			break;
@@ -184,12 +215,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 					} else {
 						tap_code16(M_PDSKT);
 					}
-/*					if (clockwise) {
-						tap_code(KC_MNXT);
-					} else {
-						tap_code(KC_MPRV);
-					}
-*/				} else if (index == 1) {
+				} else if (index == 1) {
 					if (clockwise) {
 						tap_code(KC_VOLU);
 					} else {
@@ -320,6 +346,12 @@ static void render_status(void) {
 			case _NUMBER:
 				oled_write_P(PSTR("     NUMBER/SYMBOL\n"), false);
 				break;
+			case _MEDIA:
+				oled_write_P(PSTR("     MEDIA\n"), false);
+				break;
+			case _QUANTUM:
+				oled_write_P(PSTR("     MEDIA\n"), false);
+				break;
 			default:
 				oled_write_P(PSTR(" UNKNOWN MOD LAYER\n"), false);
 		}
@@ -330,9 +362,9 @@ static void render_status(void) {
 	// Host Keyboard LED Status
 	uint8_t led_usb_state = host_keyboard_leds();
 	oled_write_P(PSTR("     "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUM ") : PSTR("    "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPS ") : PSTR("     "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRL ") : PSTR("     "), false);
+	oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUM ") : PSTR("    "), false);
+	oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPS ") : PSTR("     "), false);
+	oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRL ") : PSTR("     "), false);
 }
 
 void oled_task_user(void) {

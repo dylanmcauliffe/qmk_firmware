@@ -108,15 +108,18 @@
 //	#define STARTUP_SONG SONG(PLANCK_SOUND)
 //	#define STARTUP_SONG SONG(NO_SOUND)
 
-	#define DEFAULT_LAYER_SONGS {					\
-						SONG(COLEMAK_SOUND),	\
-						SONG(QWERTY_SOUND),		\
-						SONG(PLANCK_SOUND)		\
+	#define DEFAULT_LAYER_SONGS { \
+						SONG(COLEMAK_SOUND), \
+						SONG(QWERTY_SOUND), \
+						SONG(PLANCK_SOUND) \
                                 }
 #endif
+
+#define TAPPING_TOGGLE 2
 
 // Home row mods helpers
 #define TAPPING_TERM 300
 #define IGNORE_MOD_TAP_INTERRUPT
-//#define TAPPING_FORCE_HOLD
 #define PERMISSIVE_HOLD
+//#define TAPPING_FORCE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
