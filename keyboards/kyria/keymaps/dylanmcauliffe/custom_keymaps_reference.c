@@ -126,6 +126,8 @@
 // Layer Triggers
 #define MO_FUNC	MO(_FUNCTION)
 #define TT_MEDI	TT(_MEDIA)
+#define TG_QUAN	TG(_QUANTUM)
+
 #define FN_ESC		LT(_FUNCTION,KC_ESC)
 #define FN_P00		LT(_FUNCTION,KC_P00)
 #define FN_ENT		LT(_FUNCTION,KC_ENT)

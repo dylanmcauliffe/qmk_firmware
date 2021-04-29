@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT(
 		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,										KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,										KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
-		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_NO,	KC_NO,		KC_NO,	KC_NO,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
+		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_NO,	TG_QUAN,		RGB_SPD,	RGB_SPI,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
 								M_RDESC,	BL_QWTY,	FN_DEL,	NM_BSPC,	NV_TAB,		NV_ENT,	NM_SPC,	FN_RGUI,	BL_CLMK,	KC_F16
 		),
 	[_QWERTY] = LAYOUT(
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
 	),
 	[_NUMBER] = LAYOUT(
-		KC_GRV,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	KC_TILD,
+		KC_GRV,	KC_EXLM,	KC_AT,	KC_HASH,	KC_DLR,	KC_PERC,										KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_TILD,
 		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,										KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
 		KC_EQL,	_______,	_______,	_______,	KC_EQL,	KC_LBRC,	_______,	_______,		_______,	_______,	KC_RBRC,	KC_MINS,	_______,	_______,	_______,	KC_UNDS,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
@@ -207,6 +207,21 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 					tap_code(KC_VOLU);
 				} else {
 					tap_code(KC_VOLD);
+				}
+			}
+			break;
+		case _QUANTUM:
+			if (index == 0) {
+				if (clockwise) {
+					rgblight_step_noeeprom();
+				} else {
+					rgblight_step_reverse_noeeprom();
+				}
+			} else if (index == 1) {
+				if (clockwise) {
+					rgblight_increase_val_noeeprom();
+				} else {
+					rgblight_decrease_val_noeeprom();
 				}
 			}
 			break;
@@ -363,7 +378,7 @@ static void render_status(void) {
 				oled_write_P(PSTR("     MEDIA\n"), false);
 				break;
 			case _QUANTUM:
-				oled_write_P(PSTR("     MEDIA\n"), false);
+				oled_write_P(PSTR("     QUANTUM\n"), false);
 				break;
 			default:
 				oled_write_P(PSTR(" UNKNOWN MOD LAYER\n"), false);

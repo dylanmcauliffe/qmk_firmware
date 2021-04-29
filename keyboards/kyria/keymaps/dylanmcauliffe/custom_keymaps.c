@@ -32,6 +32,7 @@
 
 // Layer Triggers
 #define TT_MEDI	TT(_MEDIA)
+#define TG_QUAN	TG(_QUANTUM)
 
 #define FN_DEL		LT(_FUNCTION,KC_DEL)
 #define NM_SPC		LT(_NUMBER, KC_SPC)
