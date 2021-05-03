@@ -4,8 +4,6 @@
 enum layers {
 	_COLEMAKDHm,
 	_QWERTY,
-	_COLEMAKDHm2,
-	_QWERTY2,
 	_GAMEPAD,
 	_MEDIA,
 	_FUNCTION,
@@ -99,20 +97,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	_______,	KC_E,	KC_R,	KC_T,	_______,	_______,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,
 		_______,	LA_S,	LS_D,	LC_F,	_______,	_______,	_______,	KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,
 		_______,	_______,	_______,	KC_V,	KC_B,	_______,	_______,	KC_N,	KC_M,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
-	),
-	
-	[_COLEMAKDHm2] = LAYOUT_ortho_4x12 (
-		_______,	KC_W,	KC_F,	KC_P,	KC_B,	BL_CLMK,	BL_QWTY,	KC_J,	KC_L,	KC_U,	KC_Y,	_______,
-		KC_Q,	LA_R,	LS_S,	LC_T,	KC_G,	_______,	_______,	KC_M,	RC_N,	RS_E,	RA_I,	KC_SCLN,
-		LG_A,	KC_X,	KC_C,	KC_D,	KC_V,	_______,	_______,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	RG_O,
-		KC_Z,	_______,	_______,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	_______,	_______,	KC_SLSH
-	),
-
-	[_QWERTY2] = LAYOUT_ortho_4x12 (
-		_______,	_______,	KC_E,	KC_R,	KC_T,	_______,	_______,	KC_Y,	KC_U,	KC_I,	KC_O,	_______,
-		_______,	LA_S,	LS_D,	LC_F,	_______,	_______,	_______,	KC_H,	RC_J,	RS_K,	RA_L,	KC_P,
-		_______,	_______,	_______,	KC_V,	KC_B,	_______,	_______,	KC_N,	KC_M,	_______,	_______,	RG_SCLN,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
 	),
 	
