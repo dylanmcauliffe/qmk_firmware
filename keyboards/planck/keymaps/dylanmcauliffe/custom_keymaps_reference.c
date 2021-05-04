@@ -124,9 +124,17 @@
 #define RG_SCLN	RGUI_T(KC_SCLN)
 
 // Layer Triggers
-#define MO_FUNC	MO(_FUNCTION)
+#define DF_CLMK	DF(_COLEMAKDHm)
+#define DF_QWTY	DF(_QWERTY)
+#define DF_GAME	DF(_GAMEPAD)
+
 #define TT_MEDI	TT(_MEDIA)
 #define TG_QUAN	TG(_QUANTUM)
+#define MO_QUAN	MO(_QUANTUM)
+#define MO_FUNC	MO(_FUNCTION)
+
+#define WP_ZERO	LT(_WEAPONS,KC_0)
+#define ME_LALT	LT(_MEDIA,KC_LALT)
 
 #define FN_ESC		LT(_FUNCTION,KC_ESC)
 #define FN_P00		LT(_FUNCTION,KC_P00)

@@ -31,16 +31,24 @@
 #define RG_SCLN	RGUI_T(KC_SCLN)
 
 // Layer Triggers
+#define DF_CLMK	DF(_COLEMAKDHm)
+#define DF_QWTY	DF(_QWERTY)
+#define DF_GAME	DF(_GAMEPAD)
+
 #define TT_MEDI	TT(_MEDIA)
 #define TG_QUAN	TG(_QUANTUM)
+#define MO_QUAN	MO(_QUANTUM)
 
-#define FN_ESC		LT(_FUNCTION,KC_ESC)
-#define NM_SPC		LT(_NUMBER, KC_SPC)
+#define WP_ZERO	LT(_WEAPONS,KC_0)
+#define ME_LALT	LT(_MEDIA,KC_LALT)
+
+#define FN_DEL		LT(_FUNCTION,KC_DEL)
+#define NM_BSPC	LT(_NUMBER,KC_BSPC)
 #define NV_TAB		LT(_NAVIGATION,KC_TAB)
 
 #define NV_ENT		LT(_NAVIGATION,KC_ENT)
-#define NV_BSPC	LT(_NAVIGATION,KC_BSPC)
-#define FN_DEL		LT(_FUNCTION,KC_DEL)
+#define NM_SPC		LT(_NUMBER, KC_SPC)
+#define FN_RGUI	LT(_FUNCTION,KC_RGUI)
 
 // Macro Shortcuts
 #define M_RDESC	LCA(KC_HOME)
