@@ -91,9 +91,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT_ortho_4x12 (
-		KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,	_______,	DF_CLMK,	KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,
-		LG_A,	LA_R,	LS_S,	LC_T,	KC_G,	_______,	DF_QWTY,	KC_M,	RC_N,	RS_E,	RA_I,	RG_O,
-		KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	_______,	DF_GAME,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,
+		KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,	DF_CLMK,	DF_CLMK,	KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,
+		LG_A,	LA_R,	LS_S,	LC_T,	KC_G,	DF_QWTY,	DF_QWTY,	KC_M,	RC_N,	RS_E,	RA_I,	RG_O,
+		KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	DF_GAME,	DF_GAME,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,
 		TT_MEDI,	MO_QUAN,	M_RDESC,	FN_DEL,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_RGUI,	KC_F16,	MO_QUAN,	TT_MEDI
 	),
 
