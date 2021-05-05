@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef SOFT_SERIAL_PIN
 
 #undef DEBOUNCE
-#define DEBOUNCE 10
+#define DEBOUNCE 15
 
 #define UNUSED_PINS
 
