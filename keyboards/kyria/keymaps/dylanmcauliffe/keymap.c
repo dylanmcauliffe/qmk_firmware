@@ -15,17 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
-#include "custom_keymaps.c"
-
-void keyboard_post_init_user(void) {
-	// default_layer_state set to 0 will cause bitwise shift operations on unsigned values to return invalid results
-	if ( default_layer_state == 0 ) { default_layer_set(1); }
-}
 
 enum layers {
 	_COLEMAKDHm = 0,
 	_QWERTY,
 	_GAMEPAD,
+	_WEAPONS,
 	_MEDIA,
 	_FUNCTION,
 	_NAVIGATION,
@@ -33,73 +28,32 @@ enum layers {
 	_QUANTUM,
 };
 
+#include "custom_keymaps.c"
+
 const uint8_t highest_base_layer_index = 2;
-
-enum custom_keycodes {
-	BL_NEXT = SAFE_RANGE,
-	BL_PREV,
-	BL_CLMK,
-	BL_QWTY,
-	BL_GAME,
-	KC_P00,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	uint16_t highest_base_layer = pow(2, highest_base_layer_index);
-	uint16_t up = default_layer_state << 1;
-	uint16_t down = default_layer_state >> 1;
-
-	switch (keycode) {
-		case BL_NEXT:
-			if (record->event.pressed) {
-				if (get_mods() & MOD_MASK_SHIFT) {
-					down == 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
-				} else {
-					up > highest_base_layer ? default_layer_set(1) : default_layer_set(up);
-				}
-			}
-			break;
-		case BL_PREV:
-			if (record->event.pressed) {
-				if (get_mods() & MOD_MASK_SHIFT) {
-					up > highest_base_layer ? default_layer_set(1) : default_layer_set(up);
-				} else {
-					down == 0 ? default_layer_set( highest_base_layer ) : default_layer_set(down);
-				}
-			}
-			break;
-		case BL_CLMK:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_COLEMAKDHm);
-		  }
-		  return false;
-		  break;
-		case BL_QWTY:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_QWERTY);
-		  }
-		  return false;
-		  break;
-		case BL_GAME:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_GAMEPAD);
-		  }
-		  return false;
-		  break;
-		case KC_P00:
-		  if (record->event.pressed) {
-			tap_code(KC_P0);
-			tap_code(KC_P0);
-		  }
-			return false;
-		break;
-	}
-	return true;
-}
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case FN_ESC:  
+        case NV_TAB:
         case NM_SPC:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case FN_ESC:
+        case NM_BSPC:
+        case NV_TAB:
+        case NV_ENT:
+        case NM_SPC:
+        case FN_DEL:
+
+        case ME_DEL:
+        case ME_RGUI:
             return true;
         default:
             return false;
@@ -123,8 +77,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT(
 		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,										KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,										KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
-		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_NO,	TG_QUAN,		RGB_SPD,	RGB_SPI,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
-								M_RDESC,	BL_QWTY,	FN_DEL,	NM_BSPC,	NV_TAB,		NV_ENT,	NM_SPC,	FN_RGUI,	BL_CLMK,	KC_F16
+		ME_DEL,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	TG_MEDI,	TG_QUAN,		DF_GAME,	BL_CLMK,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
+								M_RDESC,	DF_QWTY,	FN_ESC,	NM_BSPC,	NV_TAB,		NV_ENT,	NM_SPC,	FN_DEL,	DF_CLMK,	KC_F16
 		),
 	[_QWERTY] = LAYOUT(
 		_______,	_______,	_______,	KC_E,	KC_R,	KC_T,										KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	_______,
@@ -136,12 +90,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-								KC_F16,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+								KC_F16,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	KC_MPLY
 	),
 	[_FUNCTION] = LAYOUT(
 		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PAUS,										KC_SLCK,	_______,	_______,	_______,	_______,	EEP_RST,
 		_______,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_CAPS,										KC_NLCK,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,		RGB_VAD,	RGB_VAI,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
 	),
 	[_MEDIA] = LAYOUT(
@@ -159,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_NUMBER] = LAYOUT(
 		KC_GRV,	KC_EXLM,	KC_AT,	KC_HASH,	KC_DLR,	KC_PERC,										KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_TILD,
 		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,										KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
-		KC_EQL,	_______,	_______,	_______,	KC_EQL,	KC_LBRC,	_______,	_______,		_______,	_______,	KC_RBRC,	KC_MINS,	_______,	_______,	_______,	KC_UNDS,
-								_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______
+		KC_EQL,	KC_BSLS,	_______,	_______,	KC_LBRC,	KC_LCBR,	_______,	_______,		_______,	_______,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,	KC_UNDS,
+								_______,	_______,	KC_GRV,	_______,	KC_MINS,		KC_EQL,	_______,	KC_QUOT,	_______,	_______
 	),
 	[_QUANTUM] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	_______,
