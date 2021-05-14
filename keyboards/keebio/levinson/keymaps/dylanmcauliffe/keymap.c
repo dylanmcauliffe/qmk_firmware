@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "custom_keymaps.c"
 
 enum layers {
 	_COLEMAKDHm,
@@ -13,49 +12,13 @@ enum layers {
 	_QUANTUM,
 };
 
-enum custom_keycodes  {
-	BL_CLMK = SAFE_RANGE,
-	BL_QWTY,
-	BL_GAME,
-	KC_P00,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		case BL_CLMK:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_COLEMAKDHm);
-		  }
-		  return false;
-		  break;
-		case BL_QWTY:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_QWERTY);
-		  }
-		  return false;
-		  break;
-		case BL_GAME:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_GAMEPAD);
-		  }
-		  return false;
-		  break;
-		case KC_P00:
-		  if (record->event.pressed) {
-			tap_code(KC_P0);
-			tap_code(KC_P0);
-		  }
-			return false;
-		break;
-	}
-	return true;
-}
+#include "custom_keymaps.c"
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case NM_SPC:
+        case FN_ESC:  
         case NV_TAB:
-        case FN_RGUI:
+        case NM_SPC:
             return true;
         default:
             return false;
@@ -64,12 +27,15 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case FN_DEL:
+        case FN_ESC:
         case NM_BSPC:
         case NV_TAB:
         case NV_ENT:
         case NM_SPC:
-        case FN_RGUI:
+        case FN_DEL:
+
+        case ME_DEL:
+        case ME_RGUI:
             return true;
         default:
             return false;
@@ -94,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,	DF_CLMK,	DF_CLMK,	KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,
 		LG_A,	LA_R,	LS_S,	LC_T,	KC_G,	DF_QWTY,	DF_QWTY,	KC_M,	RC_N,	RS_E,	RA_I,	RG_O,
 		KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	DF_GAME,	DF_GAME,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,
-		TT_MEDI,	MO_QUAN,	M_RDESC,	FN_DEL,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_RGUI,	KC_F16,	MO_QUAN,	TT_MEDI
+		ME_DEL,	MO_QUAN,	M_RDESC,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	KC_F16,	TG_MEDI,	ME_RGUI
 	),
 
 	[_QWERTY] = LAYOUT_ortho_4x12 (
@@ -133,17 +99,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	
 	[_NAVIGATION] = LAYOUT_ortho_4x12 (
-		KC_ESC,	KC_HOME,	KC_UP,	KC_END,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		KC_PGUP,	KC_HOME,	KC_UP,	KC_END,	KC_INS,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
+		KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	M_REDO,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	KC_INS,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
+		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
 	),
 	
 	[_NUMBER] = LAYOUT_ortho_4x12 (
 		KC_EXLM,	KC_AT,	KC_HASH,	KC_DLR,	KC_PERC,	_______,	_______,	KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RPRN,
 		LG_1,	LA_2,	LS_3,	LC_4,	KC_5,	_______,	_______,	KC_6,	RC_7,	RS_8,	RA_9,	RG_0,
-		_______,	_______,	_______,	KC_LBRC,	KC_LCBR,	_______,	_______,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,
-		_______,	_______,	_______,	KC_GRV,	KC_DQUO,	KC_EQL,	KC_MINS,	KC_QUOT,	KC_BSLS,	_______,	_______,	_______
+		KC_BSLS,	_______,	_______,	KC_LBRC,	KC_LCBR,	_______,	_______,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,
+		_______,	_______,	_______,	KC_EQL,	_______,	KC_MINS,	KC_QUOT,	_______,	KC_GRV,	_______,	_______,	_______
 	),
 	
 	[_QUANTUM] = LAYOUT_ortho_4x12 (
@@ -180,6 +146,13 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 						tap_code(KC_VOLU);
 					} else {
 						tap_code(KC_VOLD); 
+					}
+				}
+				else if (index == 1) {
+					if (clockwise) {
+						tap_code(KC_MNXT);
+					} else {
+						tap_code(KC_MPRV);
 					}
 				}
 				break;
