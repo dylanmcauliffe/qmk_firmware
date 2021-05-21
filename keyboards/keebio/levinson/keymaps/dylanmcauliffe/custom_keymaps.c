@@ -36,10 +36,10 @@
 #define DF_GAME	DF(_GAMEPAD)
 
 #define MO_QUAN	MO(_QUANTUM)
-#define TG_MEDI	TG(_MEDIA)
+#define TT_MEDI	TT(_MEDIA)
 
 #define WP_ZERO	LT(_WEAPONS,KC_0)
-#define ME_LALT	LT(_MEDIA,KC_LALT)
+#define QT_O		LT(_QUANTUM,KC_O)
 
 #define ME_DEL		LT(_MEDIA,KC_DEL)
 #define ME_RGUI	LT(_MEDIA,KC_RGUI)
