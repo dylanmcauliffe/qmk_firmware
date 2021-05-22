@@ -16,6 +16,10 @@ enum layers {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LS_S:
+        case LS_D:
+        case RS_E:
+        case RS_K:
         case FN_ESC:  
         case NV_TAB:
         case NM_SPC:
