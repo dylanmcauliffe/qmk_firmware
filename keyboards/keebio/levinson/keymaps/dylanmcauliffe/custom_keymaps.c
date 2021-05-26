@@ -35,8 +35,9 @@
 #define DF_QWTY	DF(_QWERTY)
 #define DF_GAME	DF(_GAMEPAD)
 
-#define MO_QUAN	MO(_QUANTUM)
+#define TG_MEDI	TG(_MEDIA)
 #define TT_MEDI	TT(_MEDIA)
+#define MO_QUAN	MO(_QUANTUM)
 
 #define WP_ZERO	LT(_WEAPONS,KC_0)
 #define QT_O		LT(_QUANTUM,KC_O)
