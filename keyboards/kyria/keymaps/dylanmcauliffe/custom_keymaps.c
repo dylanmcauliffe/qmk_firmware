@@ -37,6 +37,7 @@
 
 #define TG_QUAN	TG(_QUANTUM)
 #define TG_MEDI	TG(_MEDIA)
+#define MO_QUAN	MO(_QUANTUM)
 
 #define ME_DEL		LT(_MEDIA,KC_DEL)
 #define ME_RGUI	LT(_MEDIA,KC_RGUI)
