@@ -35,20 +35,21 @@
 #define DF_QWTY	DF(_QWERTY)
 #define DF_GAME	DF(_GAMEPAD)
 
-#define TT_MEDI	TT(_MEDIA)
-#define TG_QUAN	TG(_QUANTUM)
+#define TG_MEDI	TG(_MEDIA)
 #define MO_QUAN	MO(_QUANTUM)
 
 #define WP_ZERO	LT(_WEAPONS,KC_0)
-#define ME_LALT	LT(_MEDIA,KC_LALT)
 
-#define FN_DEL		LT(_FUNCTION,KC_DEL)
-#define NM_BSPC	LT(_NUMBER,KC_BSPC)
+#define ME_DEL		LT(_MEDIA,KC_DEL)
+#define ME_RGUI	LT(_MEDIA,KC_RGUI)
+
+#define FN_ESC		LT(_FUNCTION,KC_ESC)
+#define NM_SPC		LT(_NUMBER,KC_SPC)
 #define NV_TAB		LT(_NAVIGATION,KC_TAB)
 
 #define NV_ENT		LT(_NAVIGATION,KC_ENT)
-#define NM_SPC		LT(_NUMBER, KC_SPC)
-#define FN_RGUI	LT(_FUNCTION,KC_RGUI)
+#define NM_BSPC	LT(_NUMBER,KC_BSPC)
+#define FN_DEL		LT(_FUNCTION,KC_DEL)
 
 // Macro Shortcuts
 #define M_RDESC	LCA(KC_HOME)
@@ -60,4 +61,41 @@
 #define M_COPY		LCTL(KC_C)
 #define M_PASTE	LCTL(KC_V)
 #define M_REDO		LCTL(KC_Y)
-	
+
+enum custom_keycodes {
+	BL_CLMK = SAFE_RANGE,
+	BL_QWTY,
+	BL_GAME,
+	KC_P00,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		case BL_CLMK:
+		  if (record->event.pressed) {
+			set_single_persistent_default_layer(_COLEMAKDHm);
+		  }
+		  return false;
+		  break;
+		case BL_QWTY:
+		  if (record->event.pressed) {
+			set_single_persistent_default_layer(_QWERTY);
+		  }
+		  return false;
+		  break;
+		case BL_GAME:
+		  if (record->event.pressed) {
+			set_single_persistent_default_layer(_GAMEPAD);
+		  }
+		  return false;
+		  break;
+		case KC_P00:
+		  if (record->event.pressed) {
+			tap_code(KC_P0);
+			tap_code(KC_P0);
+		  }
+			return false;
+		break;
+	}
+	return true;
+}	

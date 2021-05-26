@@ -16,7 +16,6 @@
 
 #include QMK_KEYBOARD_H
 #include "muse.h"
-#include "custom_keymaps.c"
 
 enum layers {
 	_QWERTY,
@@ -30,49 +29,17 @@ enum layers {
 	_QUANTUM,
 };
 
-enum custom_keycodes  {
-	BL_QWTY = SAFE_RANGE,
-	BL_CLMK,
-	BL_GAME,
-	KC_P00,
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		case BL_CLMK:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_COLEMAKDHm);
-		  }
-		  return false;
-		  break;
-		case BL_QWTY:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_QWERTY);
-		  }
-		  return false;
-		  break;
-		case BL_GAME:
-		  if (record->event.pressed) {
-			set_single_persistent_default_layer(_GAMEPAD);
-		  }
-		  return false;
-		  break;
-		case KC_P00:
-		  if (record->event.pressed) {
-			tap_code(KC_P0);
-			tap_code(KC_P0);
-		  }
-			return false;
-		break;
-	}
-	return true;
-}
+#include "custom_keymaps.c"
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case NM_SPC:
+        case LS_S:
+        case LS_D:
+        case RS_E:
+        case RS_K:
+        case FN_ESC:  
         case NV_TAB:
-        case FN_RGUI:
+        case NM_SPC:
             return true;
         default:
             return false;
@@ -81,12 +48,15 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case FN_DEL:
+        case FN_ESC:
         case NM_BSPC:
         case NV_TAB:
         case NV_ENT:
         case NM_SPC:
-        case FN_RGUI:
+        case FN_DEL:
+
+        case ME_DEL:
+        case ME_RGUI:
             return true;
         default:
             return false;
@@ -110,8 +80,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWERTY] = LAYOUT_planck_grid(
 		KC_ESC,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_S,	LS_D,	LC_F,	KC_G,	KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,	KC_QUOT,
-		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
-		M_RDESC,	MO_QUAN,	DF_QWTY,	FN_DEL,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_RGUI,	DF_CLMK,	MO_QUAN,	_______
+		ME_DEL,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
+		M_RDESC,	MO_QUAN,	_______,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	_______,	MO_QUAN,	KC_F16
 	),
 	
 	[_COLEMAKDHm] = LAYOUT_planck_grid(
@@ -125,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		KC_LSFT,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		KC_F16,	ME_LALT,	_______,	WP_ZERO,	KC_SPC,	KC_LCTL,	_______,	NM_BSPC,	FN_DEL,	_______,	_______,	_______
+		KC_F16,	_______,	KC_LALT,	WP_ZERO,	KC_SPC,	KC_LCTL,	_______,	NM_BSPC,	FN_DEL,	_______,	_______,	_______
 	),
 	
 	[_WEAPONS] = LAYOUT_planck_grid (
@@ -139,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		KC_MPLY,	KC_MPRV,	KC_MNXT,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	KC_MUTE,	KC_F16
+		KC_MPLY,	KC_MPRV,	KC_MNXT,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	KC_MUTE
 	),
 	
 	[_FUNCTION] = LAYOUT_planck_grid(
@@ -150,8 +120,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	
 	[_NAVIGATION] = LAYOUT_planck_grid(
-		_______,	_______,	KC_HOME,	KC_UP,	KC_END,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_PGUP,	KC_HOME,	KC_UP,	KC_END,	KC_INS,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	M_REDO,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
 	),
@@ -159,15 +129,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_NUMBER] = LAYOUT_planck_grid(
 		KC_GRV,	KC_EXLM,	KC_AT,	KC_HASH,	KC_DLR,	KC_PERC,	KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_TILD,
 		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,	KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
-		KC_EQL,	_______,	_______,	_______,	KC_LBRC,	KC_LCBR,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,	KC_UNDS,
-		_______,	_______,	_______,	KC_GRV,	KC_DQUO,	KC_EQL,	KC_MINS,	KC_QUOT,	KC_BSLS,	_______,	_______,	_______
+		KC_EQL,	KC_BSLS,	_______,	_______,	KC_LBRC,	KC_LCBR,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,	KC_UNDS,
+		_______,	_______,	_______,	KC_EQL,	_______,	KC_MINS,	KC_QUOT,	_______,	KC_GRV,	_______,	_______,	_______
 	),
 	
 	[_QUANTUM] = LAYOUT_planck_grid (
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,
-		_______,	RESET,	DF_GAME,	_______,	_______,	_______,	_______,	_______,	_______,	DF_QWTY,	RESET,	_______
+		DF_CLMK,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_CLMK,
+		DF_QWTY,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_QWTY,
+		DF_GAME,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_GAME,
+		TG_MEDI,	RESET,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	RESET,	TG_MEDI
 	),
 };
 
