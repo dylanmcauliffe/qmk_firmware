@@ -63,8 +63,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_COLEMAKDHm] = LAYOUT_ortho_4x12 (
 		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,	KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,	KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
-		TT_MEDI,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	TT_MEDI,
-		ME_DEL,	MO_QUAN,	M_RDESC,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	KC_F16,	MO_QUAN,	ME_RGUI
+		ME_DEL,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
+		_______,	MO_QUAN,	M_RDESC,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	KC_F16,	MO_QUAN,	_______
 	),
 
 	[_QWERTY] = LAYOUT_ortho_4x12 (
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		DF_CLMK,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_CLMK,
 		DF_QWTY,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_QWTY,
 		DF_GAME,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_GAME,
-		_______,	RESET,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	RESET,	_______
+		TG_MEDI,	RESET,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	RESET,	TG_MEDI
 	),
 };
 
