@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,										KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_R,	LS_S,	LC_T,	KC_G,										KC_M,	RC_N,	RS_E,	RA_I,	RG_O,	KC_QUOT,
 		ME_DEL,	KC_Z,	KC_X,	KC_C,	KC_D,	KC_V,	_______,	_______,		_______,	_______,	KC_K,	KC_H,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
-								M_RDESC,	FN_ESC,	NM_BSPC,	NV_TAB,	MO_QUAN,		MO_QUAN,	NV_ENT,	NM_SPC,	FN_DEL,	KC_F16
+								M_RDESC,	MO_QUAN,	FN_ESC,	NM_BSPC,	NV_TAB,		NV_ENT,	NM_SPC,	FN_DEL,	MO_QUAN,	KC_F16
 		),
 
 	[_QWERTY] = LAYOUT(
@@ -123,14 +123,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_GRV,	KC_EXLM,	KC_AT,	KC_HASH,	KC_DLR,	KC_PERC,										KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_LPRN,	KC_RPRN,	KC_TILD,
 		KC_PLUS,	LG_1,	LA_2,	LS_3,	LC_4,	KC_5,										KC_6,	RC_7,	RS_8,	RA_9,	RG_0,	KC_MINS,
 		KC_EQL,	KC_BSLS,	_______,	_______,	KC_LBRC,	KC_LCBR,	_______,	_______,		_______,	_______,	KC_RCBR,	KC_RBRC,	_______,	_______,	_______,	KC_UNDS,
-								_______,	KC_EQL,	_______,	KC_MINS,	_______,		_______,	KC_QUOT,	_______,	KC_GRV,	_______
+								_______,	_______,	KC_EQL,	_______,	KC_MINS,		KC_QUOT,	_______,	KC_GRV,	_______,	_______
 	),
 
 	[_QUANTUM] = LAYOUT(
 		DF_CLMK,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	DF_CLMK,
 		DF_QWTY,	_______,	_______,	_______,	_______,	_______,										_______,	_______,	_______,	_______,	_______,	DF_QWTY,
 		DF_GAME,	_______,	_______,	_______,	_______,	_______,	_______,	_______,		_______,	_______,	_______,	_______,	_______,	_______,	_______,	DF_GAME,
-								TG_MEDI,	_______,	_______,	_______,	RESET,		RESET,	BL_CLMK,	_______,	_______,	TG_MEDI
+								TG_MEDI,	RESET,	_______,	_______,	_______,		BL_CLMK,	_______,	_______,	RESET,	TG_MEDI
 	),
 
 /*	[_BLANK] = LAYOUT(
