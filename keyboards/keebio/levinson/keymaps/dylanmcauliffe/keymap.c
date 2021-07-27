@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC,	_______,	_______,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	_______,
 		KC_TAB,	KC_A,	KC_S,	KC_D,	KC_F,	_______,	KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,	_______,
 		KC_LSFT,	_______,	_______,	_______,	KC_V,	KC_B,	KC_N,	KC_M,	_______,	_______,	_______,	_______,
-		KC_LALT,	QT_O,	KC_F16,	WP_ZERO,	KC_SPC,	KC_LCTL,	_______,	NM_BSPC,	_______,	KC_MPLY,	_______,	_______
+		KC_LALT,	QT_O,	KC_F16,	WP_ONE,	KC_SPC,	KC_LCTL,	_______,	NM_BSPC,	_______,	KC_MPLY,	_______,	_______
 	),
 	
 	[_WEAPONS] = LAYOUT_ortho_4x12 (
