@@ -33,10 +33,6 @@ enum layers {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LS_S:
-        case LS_D:
-        case RS_E:
-        case RS_K:
         case FN_ESC:  
         case NV_TAB:
         case NM_SPC:
@@ -70,6 +66,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LS_D:
         case RS_E:
         case RS_K:
+
+        case ME_LGUI:
+        case ME_RGUI:
             return 150;
         default:
             return TAPPING_TERM;
@@ -80,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWERTY] = LAYOUT_planck_grid(
 		KC_ESC,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BSLS,
 		KC_TAB,	LG_A,	LA_S,	LS_D,	LC_F,	KC_G,	KC_H,	RC_J,	RS_K,	RA_L,	RG_SCLN,	KC_QUOT,
-		ME_DEL,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
-		M_RDESC,	MO_QUAN,	_______,	FN_ESC,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_DEL,	_______,	MO_QUAN,	KC_F16
+		ME_LGUI,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	ME_RGUI,
+		M_RDESC,	MO_QUAN,	_______,	FN_DEL,	NM_BSPC,	NV_TAB,	NV_ENT,	NM_SPC,	FN_ESC,	_______,	MO_QUAN,	KC_F16
 	),
 	
 	[_COLEMAKDHm] = LAYOUT_planck_grid(
@@ -113,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	
 	[_FUNCTION] = LAYOUT_planck_grid(
-		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PSCR,	KC_SLCK,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	KC_PAUS,	KC_SLCK,	_______,	_______,	_______,	_______,	EEP_RST,
 		_______,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_CAPS,	KC_NLCK,	_______,	_______,	_______,	_______,	_______,
-		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PAUS,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_PSCR,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
 	),
 	
@@ -144,6 +143,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
 	switch (get_highest_layer(layer_state)) {
+		case _NAVIGATION:
+			if (clockwise) {
+				tap_code(KC_WH_D);
+			} else {
+				tap_code(KC_WH_U);
+			}
+			break;
 		case _MEDIA:
 			if (clockwise) {
 				tap_code(KC_VOLU);

@@ -41,6 +41,7 @@
 #define WP_ZERO	LT(_WEAPONS,KC_0)
 
 #define ME_DEL		LT(_MEDIA,KC_DEL)
+#define ME_LGUI	LT(_MEDIA,KC_LGUI)
 #define ME_RGUI	LT(_MEDIA,KC_RGUI)
 
 #define FN_ESC		LT(_FUNCTION,KC_ESC)
