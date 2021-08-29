@@ -39,6 +39,8 @@
 #define MO_QUAN	MO(_QUANTUM)
 
 #define WP_ZERO	LT(_WEAPONS,KC_0)
+#define WP_ONE		LT(_WEAPONS,KC_1)
+#define QT_O		LT(_QUANTUM,KC_O)
 
 #define ME_DEL		LT(_MEDIA,KC_DEL)
 #define ME_LGUI	LT(_MEDIA,KC_LGUI)
