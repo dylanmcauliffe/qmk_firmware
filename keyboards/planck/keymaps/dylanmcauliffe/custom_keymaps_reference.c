@@ -144,6 +144,7 @@
 #define ME_LALT	LT(_MEDIA,KC_LALT)
 #define ME_DEL		LT(_MEDIA,KC_DEL)
 #define ME_RGUI	LT(_MEDIA,KC_RGUI)
+#define ME_TAB		LT(_MEDIA,KC_TAB)
 
 #define NM_BSPC	LT(_NUMBER,KC_BSPC)
 #define NM_SPC		LT(_NUMBER,KC_SPC)
