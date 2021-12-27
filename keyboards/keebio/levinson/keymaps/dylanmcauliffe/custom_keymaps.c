@@ -35,25 +35,17 @@
 #define DF_QWTY	DF(_QWERTY)
 #define DF_GAME	DF(_GAMEPAD)
 
-#define TG_MEDI	TG(_MEDIA)
-#define TT_MEDI	TT(_MEDIA)
-#define MO_QUAN	MO(_QUANTUM)
-
 #define WP_ZERO	LT(_WEAPONS,KC_0)
 #define WP_ONE		LT(_WEAPONS,KC_1)
-#define QT_O		LT(_QUANTUM,KC_O)
 
-#define ME_DEL		LT(_MEDIA,KC_DEL)
-#define ME_LGUI	LT(_MEDIA,KC_LGUI)
-#define ME_RGUI	LT(_MEDIA,KC_RGUI)
-
-#define FN_ESC		LT(_FUNCTION,KC_ESC)
-#define NM_SPC		LT(_NUMBER,KC_SPC)
-#define NV_TAB		LT(_NAVIGATION,KC_TAB)
+#define NM_BSPC	LT(_NUMBER,KC_BSPC)
+#define NV_DEL		LT(_NAVIGATION,KC_DEL)
 
 #define NV_ENT		LT(_NAVIGATION,KC_ENT)
-#define NM_BSPC	LT(_NUMBER,KC_BSPC)
-#define FN_DEL		LT(_FUNCTION,KC_DEL)
+#define NM_SPC		LT(_NUMBER,KC_SPC)
+#define FN_F2		LT(_FUNCTION,KC_F2)
+
+#define QT_P00		LT(_QUANTUM,KC_P00)
 
 // Macro Shortcuts
 #define M_RDESC	LCA(KC_HOME)
@@ -81,18 +73,37 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		  }
 		  return false;
 		  break;
+		  
 		case BL_QWTY:
 		  if (record->event.pressed) {
 			set_single_persistent_default_layer(_QWERTY);
 		  }
 		  return false;
 		  break;
+		  
 		case BL_GAME:
 		  if (record->event.pressed) {
 			set_single_persistent_default_layer(_GAMEPAD);
 		  }
 		  return false;
 		  break;
+		  
+		case QT_P00:
+		  if (record->tap.count && record->event.pressed) {
+			tap_code(KC_P0);
+			tap_code(KC_P0);
+		  }
+		  else if (record->event.pressed) {
+			layer_on(_QUANTUM);
+		  }
+		  else if (record->tap.count) {
+		  }
+		  else {
+			layer_off(_QUANTUM);
+		  }
+			return false;
+		break;
+		
 		case KC_P00:
 		  if (record->event.pressed) {
 			tap_code(KC_P0);
