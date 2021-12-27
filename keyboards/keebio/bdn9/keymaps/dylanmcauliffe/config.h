@@ -1,8 +1,13 @@
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-#    define RGB_MATRIX_KEYPRESSES
+#	define RGB_MATRIX_KEYPRESSES
 #endif
+
+#ifdef RGBLIGHT_HUE_STEP
+#	undef RGBLIGHT_HUE_STEP
+#endif
+#define RGBLIGHT_HUE_STEP 4
 
 #undef ENCODERS_PAD_A
 #undef ENCODERS_PAD_B

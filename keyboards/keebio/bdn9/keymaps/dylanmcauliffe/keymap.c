@@ -15,28 +15,33 @@
  */
 #include QMK_KEYBOARD_H
 
-enum encoder_names {
-  _LEFT,
-  _RIGHT,
-  _MIDDLE,
+enum layers {
+	_MACRO,
+	_QUANTUM,
 };
 
-#define M_RDPESC	LCA(KC_HOME)
-#define M_NDSKTP	G(C(KC_RGHT))
-#define M_PDSKTP	G(C(KC_LEFT))
+enum encoder_names {
+	_LEFT,
+	_RIGHT,
+	_MIDDLE,
+};
 
-#define LAY_DOT		LT(1,KC_DOT)
+#define M_RDESC	LCA(KC_HOME)
+#define M_NDSKT	G(C(KC_RGHT))
+#define M_PDSKT	G(C(KC_LEFT))
+
+#define QT_F16		LT(_QUANTUM,KC_F16)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
-        KC_MPLY,	KC_F16,	 	KC_MUTE,
-        M_PDSKTP,	M_RDPESC,	M_NDSKTP,
-        KC_1,		LAY_DOT,	KC_0
+    [_MACRO] = LAYOUT(
+		KC_MPLY,	QT_F16,	KC_MUTE,
+		KC_P1,	KC_PDOT,	KC_P0,
+		M_PDSKT,	M_RDESC,	M_NDSKT
     ),
-    [1] = LAYOUT(
-        RESET,		_______,	_______,
-        _______,	_______,	_______,
-        _______,	_______,	_______
+    [_QUANTUM] = LAYOUT(
+		RESET,	_______,	_______,
+		RGB_HUD,	RGB_TOG,	RGB_HUI,
+		RGB_RMOD,	RGB_TOG,	RGB_MOD
     ),
 };
 
