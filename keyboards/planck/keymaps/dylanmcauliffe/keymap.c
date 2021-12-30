@@ -33,7 +33,6 @@ enum layers {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case FN_ESC:  
         case NM_SPC:
             return true;
         default:
@@ -43,14 +42,14 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case FN_ESC:
         case NM_BSPC:
+        case NV_DEL:
+
         case NV_ENT:
         case NM_SPC:
-        case FN_DEL:
+        case FN_F2:
 
-        case ME_DEL:
-        case ME_RGUI:
+        case QT_P00:
             return true;
         default:
             return false;
@@ -59,15 +58,6 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LS_S:
-            return TAPPING_TERM - 150;
-        case LS_D:
-        case RS_E:
-        case RS_K:
-
-        case ME_LGUI:
-        case ME_RGUI:
-            return 150;
         default:
             return TAPPING_TERM;
     }
@@ -76,7 +66,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_QWERTY] = LAYOUT_planck_grid(
 		KC_ESC,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BSLS,
-		ME_TAB,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,	KC_QUOT,
+		KC_TAB,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,	KC_QUOT,
 		KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_N,	KC_M,	KC_COMM,	KC_DOT,	KC_SLSH,	KC_RSFT,
 		M_RDESC,	KC_LCTL,	KC_LGUI,	KC_LALT,	NM_BSPC,	NV_DEL,	NV_ENT,	NM_SPC,	FN_F2,	KC_F16,	QT_P00,	KC_RGUI
 	),
@@ -117,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 	
 	[_NAVIGATION] = LAYOUT_planck_grid(
-		_______,	KC_PGUP,	KC_HOME,	KC_UP,	KC_END,	KC_INS,	_______,	_______,	_______,	_______,	_______,	_______,
+		_______,	KC_PGUP,	KC_HOME,	KC_UP,	KC_END,	_______,	_______,	_______,	_______,	_______,	_______,	KC_INS,
 		_______,	KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_ENT,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	M_UNDO,	M_CUT,	M_COPY,	M_PASTE,	M_REDO,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______,	_______
@@ -139,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
 	switch (get_highest_layer(layer_state)) {
 		case _MEDIA:
 			if (clockwise) {
@@ -165,5 +155,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 				}
 			}
 	}
+	
+	return true;
 }
 #endif
