@@ -65,8 +65,18 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 	}
 }
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+	    case NV_BSPC:
+	    case QT_CAPWD:
+		return TAPPING_TERM + 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /* RowCol
+    /* RowCol ex: 42 == Row4 Col2
      * ┌────┬────┬────┬────┬────┬────┐         ┌────┬────┬────┬────┬────┬────┐
      * │ 00 │ 01 │ 02 │ 03 │ 04 │ 05 │         │ 15 │ 14 │ 13 │ 12 │ 11 │ 10 │
      * ├────┼────┼────┼────┼────┼────┤         ├────┼────┼────┼────┼────┼────┤
