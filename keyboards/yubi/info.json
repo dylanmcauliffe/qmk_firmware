@@ -5,15 +5,20 @@
 	"bootloader": "tinyuf2",
 	"diode_direction": "COL2ROW",
 	"features": {
-		"bootmagic": false,
-		"command": false,
+		"audio": false,
+		"bootmagic": true,
+		"command": true,
 		"console": true,
 		"encoder": true,
 		"encoder_map": true,
 		"extrakey": true,
-		"mousekey": false,
+		"mousekey": true,
 		"nkro": true,
 		"oled": false,
+		"via": true,
+	},
+	"build": {
+		"lto": true,
 	},
 	"caps_word": {
 		"enabled": true,
@@ -32,6 +37,7 @@
 			},
 		]
 	},
+	"lighting": "none",
 	"matrix_pins": {
 		"cols": ["B10", "B2", "B1", "B0", "A15", "B3"],
 		"rows": ["B4", "A5", "B5", "A6", "B8", "A7", "B9", "A4"]
@@ -47,9 +53,13 @@
 	},
 	"url": "",
 	"usb": {
-		"device_version": "0.0.5",
-		"pid": "0xCB13",
 		"vid": "0xAB17"
+		"pid": "0xCB13",
+		"device_version": "0.0.5",
+		"shared_endpoint": {
+			"keyboard": true,
+			"mouse": true,
+		},
 	},
 	"layouts": {
 		"LAYOUT_yubi_v5a": {
