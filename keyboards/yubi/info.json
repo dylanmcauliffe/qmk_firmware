@@ -1,30 +1,58 @@
 {
-	"manufacturer": "Abstruse Systems",
-	"keyboard_name": "Yubi",
+	"manufacturer": "abstruse systems",
+	"keyboard_name": "yubi",
 	"maintainer": "dylanmcauliffe",
 	"bootloader": "tinyuf2",
 	"diode_direction": "COL2ROW",
 	"features": {
-		"bootmagic": true,
-		"command": true,
+		"bootmagic": false,
+		"command": false,
 		"console": true,
+		"encoder": true,
+		"encoder_map": true,
 		"extrakey": true,
-		"mousekey": true,
-		"nkro": true
+		"mousekey": false,
+		"nkro": true,
+		"oled": false,
+	},
+	"caps_word": {
+		"enabled": true,
+		"both_shifts_turns_on": true,
+	}
+	"encoder": {
+		"rotary": [
+			{
+				"pin_a": "C13",
+				"pin_b": "C14",
+				"resolution": 2
+			},{
+				"pin_a": "A1",
+				"pin_b": "A0",
+				"resolution": 2
+			},
+		]
 	},
 	"matrix_pins": {
 		"cols": ["B10", "B2", "B1", "B0", "A15", "B3"],
 		"rows": ["B4", "A5", "B5", "A6", "B8", "A7", "B9", "A4"]
 	},
 	"processor": "STM32F411",
+	"tapping": {
+		"force_hold_per_key": true,
+		"ignore_mod_tap_interrupt": true,
+		"permissive_hold_per_key": true,
+		"term": 150,
+		"term_per_key": false,
+		"toggle": 2
+	},
 	"url": "",
 	"usb": {
 		"device_version": "0.0.5",
-		"pid": "0x00AB",
-		"vid": "0x005A"
+		"pid": "0xCB13",
+		"vid": "0xAB17"
 	},
 	"layouts": {
-		"LAYOUT_yubi": {
+		"LAYOUT_yubi_v5a": {
 			"layout": [
 				{ "matrix": [0, 0], "x": 0, "y": 0 },
 				{ "matrix": [0, 1], "x": 1, "y": 0 },
