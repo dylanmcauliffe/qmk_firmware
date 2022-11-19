@@ -8,7 +8,7 @@
 
 #define NM_SPC		LT(_NUMBER,KC_SPC)
 
-#define QT_PLUS	LT(_QUANTUM,KC_PLUS)
+#define QT_MINS	LT(_QUANTUM,KC_MINS)
 #define QT_F16		LT(_QUANTUM,KC_F16)
 #define QT_P00		LT(_QUANTUM,KC_P00)
 
@@ -65,14 +65,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			}
 			return false;
 		break;
-
+/*
 		case LALT_T(KC_PLUS):
 			if (record->tap.count && record->event.pressed) {
 				 tap_code16(KC_PLUS); // Send KC_PLUS on tap
 			 return false;        // Return false to ignore further processing of key
 			}
 		break;
-
+*/
 		case KC_CAPWD:
 			if (record->event.pressed) {
 				caps_word_on();
@@ -159,7 +159,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 		case NM_SPC:
 		case RA_F16:
 
-		case QT_PLUS:
+		case QT_MINS:
 			return true;
 		default:
 			return false;
