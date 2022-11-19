@@ -4,6 +4,8 @@
 #define DF_QWTY	DF(_QWERTY)		// Default Layer: QWERTY
 #define DF_GAME	DF(_GAME)			// Default Layer: Game
 
+#define FN_F16		LT(_FUNCTION,KC_F16)
+
 #define NV_BSPC	LT(_NAVIGATION,KC_BSPC)
 
 #define NM_SPC		LT(_NUMBER,KC_SPC)
@@ -29,7 +31,6 @@
 #define RC_F5		RCTL_T(KC_F5)
 
 #define LA_CAPWD	LALT_T(KC_CAPWD)
-#define RA_F16		RALT_T(KC_F16)
 
 #define LS_DEL		LSFT_T(KC_DEL)
 #define RS_ENT		RSFT_T(KC_ENT)
@@ -157,7 +158,7 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 		case RS_ENT:
 		case NM_SPC:
-		case RA_F16:
+		case FN_F16:
 
 		case QT_MINS:
 			return true;
