@@ -4,6 +4,9 @@
 	"maintainer": "dylanmcauliffe",
 	"bootloader": "tinyuf2",
 	"diode_direction": "COL2ROW",
+	"dynamic_keymap": {
+		"layer_count": 8
+	}
 	"features": {
 		"audio": false,
 		"bootmagic": true,
@@ -15,14 +18,14 @@
 		"mousekey": true,
 		"nkro": true,
 		"oled": false,
-		"via": true,
+		"via": false,
 	},
 	"build": {
 		"lto": true,
 	},
 	"caps_word": {
 		"enabled": true,
-		"both_shifts_turns_on": true,
+		"both_shifts_turns_on": false,
 	}
 	"encoder": {
 		"rotary": [
@@ -37,7 +40,6 @@
 			},
 		]
 	},
-	"lighting": "none",
 	"matrix_pins": {
 		"cols": ["B10", "B2", "B1", "B0", "A15", "B3"],
 		"rows": ["B4", "A5", "B5", "A6", "B8", "A7", "B9", "A4"]
