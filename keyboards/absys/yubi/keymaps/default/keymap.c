@@ -84,13 +84,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-	[_QWERTY] =   { ENCODER_CCW_CW(M_PDSKT, M_NDSKT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)  },
-	[_COLEMAKdm] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-	[_FUNCTION] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-	[_NAVIGATION] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-	[_NUMBER] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-	[_QUANTUM] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
-	[_BLANK] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-	[_BLANK2] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_QWERTY]		= { ENCODER_CCW_CW(M_PDSKT, M_NDSKT), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+	[_COLEMAKdm]	= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_FUNCTION]	= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_NAVIGATION]	= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_NUMBER]		= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_QUANTUM]	= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(KC_MPRV, KC_MNXT) },
+	[_BLANK]		= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+	[_BLANK2]		= { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
 };
 #endif
