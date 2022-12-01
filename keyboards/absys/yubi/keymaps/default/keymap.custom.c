@@ -10,7 +10,7 @@
 
 #define NM_SPC		LT(_NUMBER,KC_SPC)
 
-#define QT_MINS	LT(_QUANTUM,KC_MINS)
+#define QT_RGUI	LT(_QUANTUM,KC_RGUI)
 #define QT_F16		LT(_QUANTUM,KC_F16)
 #define QT_P00		LT(_QUANTUM,KC_P00)
 
@@ -27,13 +27,13 @@
 
 // Mod Keys
 
-#define LC_F8		LCTL_T(KC_F8)
-#define RC_F5		RCTL_T(KC_F5)
+#define LS_F8		LSFT_T(KC_F8)
+#define RS_F5		RSFT_T(KC_F5)
 
 #define LA_CAPWD	LALT_T(KC_CAPWD)
 
-#define LS_DEL		LSFT_T(KC_DEL)
-#define RS_ENT		RSFT_T(KC_ENT)
+#define LC_DEL		LCTL_T(KC_DEL)
+#define RC_ENT		RCTL_T(KC_ENT)
 
 // Custom Keycodes
 enum custom_keycodes {
@@ -149,18 +149,18 @@ bool caps_word_press_user(uint16_t keycode) {
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		case LC_F8:
-		case RC_F5:
+		case LS_F8:
+		case RS_F5:
 
 		case LA_CAPWD:
 		case NV_BSPC:
-		case LS_DEL:
+		case LC_DEL:
 
-		case RS_ENT:
+		case RC_ENT:
 		case NM_SPC:
 		case FN_F16:
 
-		case QT_MINS:
+		case QT_RGUI:
 			return true;
 		default:
 			return false;
@@ -169,16 +169,16 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
-		case LS_DEL:
+		case LC_DEL:
 		
-		case RS_ENT:
+		case RC_ENT:
 		case NM_SPC:
 			return true;
 		default:
 			return false;
 	}
 }
-
+/*
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 	    case false:
@@ -187,3 +187,4 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
     }
 }
+*/

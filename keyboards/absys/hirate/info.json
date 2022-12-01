@@ -1,0 +1,95 @@
+{
+	"manufacturer": "abstruse systems",
+	"keyboard_name": "hirate",
+	"maintainer": "dylanmcauliffe",
+	"bootloader": "stm32-dfu",
+	"diode_direction": "COL2ROW",
+	"dynamic_keymap": {
+		"layer_count": 4
+	},
+	"features": {
+		"audio": false,
+		"bootmagic": true,
+		"command": true,
+		"console": true,
+		"encoder": true,
+		"encoder_map": true,
+		"extrakey": true,
+		"mousekey": true,
+		"nkro": true,
+		"oled": false,
+		"via": false
+	},
+	"encoder": {
+		"rotary": [
+			{
+				"pin_a": "B0",
+				"pin_b": "B9",
+				"resolution": 2
+			},
+		]
+	},
+	"matrix_pins": {
+		"cols": [ "B5", "B15", "A1", "A0", "B8", "B13", "B14" ],
+		"rows": [ "A2", "B4", "B3", "B2", "B1" ]
+	},
+	"processor": "STM32F303",
+	"tapping": {
+		"permissive_hold": true,
+		"term": 150,
+		"toggle": 2
+	},
+	"url": "",
+	"usb": {
+		"vid": "0xAB17"
+		"pid": "0xCB17",
+		"device_version": "0.0.1",
+		"shared_endpoint": {
+			"keyboard": true,
+			"mouse": true,
+		},
+	},
+	"layouts": {
+		"LAYOUT_hirate_v1a": {
+			"layout": [
+				{ "matrix": [0, 0], "x": 0, "y": 0 },
+				{ "matrix": [0, 1], "x": 1, "y": 0 },
+				{ "matrix": [0, 2], "x": 2, "y": 0 },
+				{ "matrix": [0, 3], "x": 3, "y": 0 },
+				{ "matrix": [0, 4], "x": 4, "y": 0 },
+				{ "matrix": [0, 5], "x": 5, "y": 0 },
+				{ "matrix": [0, 6], "x": 6, "y": 0 },
+
+				{ "matrix": [1, 0], "x": 0, "y": 1 },
+				{ "matrix": [1, 1], "x": 1, "y": 1 },
+				{ "matrix": [1, 2], "x": 2, "y": 1 },
+				{ "matrix": [1, 3], "x": 3, "y": 1 },
+				{ "matrix": [1, 4], "x": 4, "y": 1 },
+				{ "matrix": [1, 5], "x": 5, "y": 1 },
+				{ "matrix": [1, 6], "x": 6, "y": 1 },
+
+				{ "matrix": [2, 0], "x": 0, "y": 2 },
+				{ "matrix": [2, 1], "x": 1, "y": 2 },
+				{ "matrix": [2, 2], "x": 2, "y": 2 },
+				{ "matrix": [2, 3], "x": 3, "y": 2 },
+				{ "matrix": [2, 4], "x": 4, "y": 2 },
+				{ "matrix": [2, 5], "x": 5, "y": 2 },
+				{ "matrix": [2, 6], "x": 6, "y": 2 },
+                                                     
+				{ "matrix": [3, 0], "x": 0, "y": 3 },
+				{ "matrix": [3, 1], "x": 1, "y": 3 },
+				{ "matrix": [3, 2], "x": 2, "y": 3 },
+				{ "matrix": [3, 3], "x": 3, "y": 3 },
+				{ "matrix": [3, 4], "x": 4, "y": 3 },
+				{ "matrix": [3, 5], "x": 5, "y": 3 },
+				{ "matrix": [3, 6], "x": 6, "y": 3 },
+                                                     
+				{ "matrix": [4, 2], "x": 2, "y": 4 },
+                                                     
+				{ "matrix": [4, 4], "x": 4, "y": 4 },
+				{ "matrix": [4, 5], "x": 5, "y": 4 },
+				{ "matrix": [4, 6], "x": 6, "y": 4 }
+			]
+		}
+	}
+}
