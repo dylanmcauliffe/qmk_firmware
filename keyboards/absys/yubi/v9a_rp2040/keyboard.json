@@ -15,6 +15,7 @@
 		"backlight": false,
 		"battery": false,
 		"bootmagic": true,
+		"blutooth": false,
 		"caps_word": true,
 		"combo": true,
 		"command": false,
@@ -33,9 +34,32 @@
 		"leader": false,
 		"midi": false,
 		"mousekey": true,
+		"nkro": true,
 		"oled": true,
+		"os_detection": false,
+		"pointing_device": false,
+		"programmable_button": false,
+		"ps2": false,
+		"ps2_mouse": false,
+		"raw": false,
+		"repeat_key": false,
 		"rgb_matrix": false,
-		"split_led_state": false
+		"rgblight": true,
+		"secure": false,
+		"send_string": false,
+		"sequencer": false,
+		"split": false,
+		"split_led_state": false,
+		"st7565": false,
+		"steno": false,
+		"swap_hands": false,
+		"tap_dance": false,
+		"tri_layer": false,
+		"unicode_common": false,
+		"via": false,
+		"wireless": false,
+		"wpm": false
+
     },
 
 	"encoder": {
@@ -45,8 +69,9 @@
 		]
 	},
 
-	"split": {
-		"enabled": false
+	"rgblight": {
+		"driver": "ws2812",
+		"led_count": 1
 	},
 
 	"diode_direction": "COL2ROW",
@@ -58,6 +83,13 @@
 	"usb": {
         "device_version": "0.0.9"
     },
+
+	"ws2812": {
+		"driver": "vendor",
+		"pin": "NO_PIN",
+		"rgbw": false
+	},
+
     "layouts": {
         "LAYOUT": {
             "layout": [

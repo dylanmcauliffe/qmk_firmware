@@ -1,5 +1,6 @@
 {
   "comments": {
-    "features.backlight": "single color underglow"
+    "features.backlight": "single color underglow",
+    "features.rgblight": "RGB underglow"
   }
 }
