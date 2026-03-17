@@ -1,0 +1,14 @@
+{
+	"keyboard_name": "yubi",
+	"manufacturer": "abstruse systems",
+	"maintainer": "dylanmcauliffe",
+	"url": "https://github.com/abstrusesystems",
+	"tags": [ "ortho", "ergo", "backlight", "oled", "encoder" ],
+
+	"bootloader_instructions": "Press the button marked RESET on the bottom of the board.",
+
+	"usb": {
+        "pid": "0xAB17",
+        "vid": "0x0013"
+    }
+}

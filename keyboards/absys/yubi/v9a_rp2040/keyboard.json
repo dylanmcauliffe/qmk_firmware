@@ -1,0 +1,83 @@
+{
+    "bootloader": "rp2040",
+	"pin_compatible": "elite_c",
+    "processor": "RP2040",
+
+	"build": {
+		"firmware_format": "uf2",
+		"lto": true
+	},
+
+    "features": {
+		"audio": false,
+		"auto_shift": false,
+		"autocorrect": false,
+		"backlight": false,
+		"battery": false,
+		"bootmagic": true,
+		"caps_word": true,
+		"combo": true,
+		"command": false,
+		"digitizer": false,
+		"dip_switch": false,
+		"dip_switch_map": false,
+		"dynamic_macro": false,
+		"encoder": true,
+		"encoder_map": true,
+		"haptic": false,
+		"hd44780": false,
+		"joystick": false,
+		"key_lock": false,
+		"key_override": false,
+		"layer_lock": true,
+		"leader": false,
+		"midi": false,
+		"mousekey": true,
+		"oled": true,
+		"rgb_matrix": false,
+		"split_led_state": false
+    },
+
+	"encoder": {
+		"rotary": [
+			{ "pin_a": "NO_PIN", "pin_b": "NO_PIN", "resolution": 2 },
+			{ "pin_a": "NO_PIN", "pin_b": "NO_PIN", "resolution": 2 }
+		]
+	},
+
+	"split": {
+		"enabled": false
+	},
+
+	"diode_direction": "COL2ROW",
+    "matrix_pins": {
+        "cols": ["GP0", "GP1", "GP2", "GP3"],
+        "rows": ["GP15", "GP14", "GP13", "GP12"]
+    },
+
+	"usb": {
+        "device_version": "0.0.9"
+    },
+    "layouts": {
+        "LAYOUT": {
+            "layout": [
+                {"matrix": [0, 0], "x": 0, "y": 0},
+                {"matrix": [0, 1], "x": 1, "y": 0},
+                {"matrix": [0, 2], "x": 2, "y": 0},
+                {"matrix": [0, 3], "x": 3, "y": 0},
+                {"matrix": [1, 0], "x": 0, "y": 1},
+                {"matrix": [1, 1], "x": 1, "y": 1},
+                {"matrix": [1, 2], "x": 2, "y": 1},
+                {"matrix": [1, 3], "x": 3, "y": 1},
+                {"matrix": [2, 0], "x": 0, "y": 2},
+                {"matrix": [2, 1], "x": 1, "y": 2},
+                {"matrix": [2, 2], "x": 2, "y": 2},
+                {"matrix": [2, 3], "x": 3, "y": 2},
+                {"matrix": [3, 0], "x": 0, "y": 3},
+                {"matrix": [3, 1], "x": 1, "y": 3},
+                {"matrix": [3, 2], "x": 2, "y": 3},
+                {"matrix": [3, 3], "x": 3, "y": 3}
+            ]
+        }
+    }
+}
