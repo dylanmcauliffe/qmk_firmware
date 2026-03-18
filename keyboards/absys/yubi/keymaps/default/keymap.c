@@ -1,3 +1,4 @@
+// best viewed with tab size of 5
 #include QMK_KEYBOARD_H
 
 enum layers {
