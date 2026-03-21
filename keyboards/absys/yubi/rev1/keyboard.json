@@ -11,7 +11,7 @@
 	"encoder": {
 		"rotary": [
 			{ "pin_a": "GP5", "pin_b": "GP6", "resolution": 2 },
-			{ "pin_a": "GP26", "pin_b": "GP22", "resolution": 2 }
+			{ "pin_a": "GP22", "pin_b": "GP26", "resolution": 2 }
 		]
 	},
 
@@ -111,8 +111,10 @@
 
 	"rgblight": {
 		"driver": "ws2812",
+		"brightness_steps": 8,
 		"led_count": 1,
-		"max_brightness": 64,
+		"max_brightness": 96,
+		"saturation_steps": 8,
 		"sleep": true,
 		"animations": {
 			"static_light": true,
@@ -122,10 +124,10 @@
 		"default": {
 			"on": true,
 			"animation": "breathing",
-			"hue": 201,
+			"hue": 210,
 			"sat": 255,
-			"speed": 65,
-			"val": 64
+			"speed": 96,
+			"val": 0
 		}
 	},
 
@@ -137,6 +139,7 @@
 		"ignore_mod_tap_interrupt": true,
 		"permissive_hold": true,
 		"permissive_hold_per_key": false,
+		"quick_tap_term": false,
 		"quick_tap_term_per_key": true,
 		"retro": false,
 		"retro_per_key": false,

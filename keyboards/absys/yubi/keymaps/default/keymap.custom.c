@@ -5,20 +5,38 @@
 #define PD_QWTY	PDF( _QWERTY )			// Default Layer: QWERTY
 #define DF_QWTY	DF( _QWERTY )			// Default Layer: QWERTY
 
-#define FN_F8		LT(_FUNCTION,KC_F8)
-#define FN_F16		LT(_FUNCTION,KC_F16)
+#define FN_F8		LT( _FUNCTION,KC_F8 )
+#define FN_F16		LT( _FUNCTION,KC_F16 )
 
-#define NV_BSPC	LT(_NAVIGATION,KC_BSPC)
+#define NV_BSPC	LT( _NAVIGATION,KC_BSPC )
 
-#define NM_SPC		LT(_NUMBER,KC_SPC)
+#define NM_SPC		LT( _NUMBER,KC_SPC )
+
+#define QT_F16		LT( _QUANTUM,KC_F16 )
+#define TG_QNTM	TG( _QUANTUM )
 
 
 
 // macros
 
 #define M_TSKMGR	LCTL( LSFT( KC_ESC ) )	// Control + Shift + Escape: Open Task Manager
+#define M_RDESC	LCTL( LALT( KC_HOME ) )
 
+#define M_UNDO		LCTL( KC_Z )
+#define M_CUT		LCTL( KC_X )
+#define M_COPY		LCTL( KC_C )
+#define M_PASTE	LCTL( KC_V )
 #define M_REDO		LCTL( KC_Y )
+
+#define M_NAVL		LGUI( KC_LEFT )		// Niri Navigation
+#define M_NAVD		LGUI( KC_DOWN )		// Niri Navigation
+#define M_NAVU		LGUI( KC_UP )			// Niri Navigation
+#define M_NAVR		LGUI( KC_RGHT )		// Niri Navigation
+
+#define M_MOVL		LGUI( LSFT( KC_LEFT ) )	// Niri Navigation
+#define M_MOVD		LGUI( LSFT( KC_DOWN ) )	// Niri Navigation
+#define M_MOVU		LGUI( LSFT( KC_UP ) )	// Niri Navigation
+#define M_MOVR		LGUI( LSFT( KC_RGHT ) )	// Niri Navigation
 
 
 
@@ -37,7 +55,7 @@
 
 #define RA_QUOT	RALT_T( KC_QUOT )
 #define RA_DQUO	RALT_T( KC_DQUO )
-#define RA_LSCR	RALT_T( KC_LSCR )
+#define RA_SCRL	RALT_T( KC_SCRL )
 
 #define RC_EQL		RCTL_T( KC_EQL )
 #define RC_PLUS	RCTL_T( KC_PLUS )
@@ -49,7 +67,8 @@
 
 enum combos {
 	C_TASK_MANAGER,	// M_TSKMGR
-	C_OSL_QUANTUM,	//
+	C_OSL_QUANTUM,
+	C_TG_QUANTUM,
 };
 
 const uint16_t PROGMEM combo_esc_1[]		= { KC_ESC, KC_1, COMBO_END };
@@ -57,7 +76,8 @@ const uint16_t PROGMEM combo_mins_eql[]		= { LC_MINS, RC_EQL, COMBO_END };
 
 combo_t key_combos[] = {
 	[C_TASK_MANAGER]	= COMBO( combo_esc_1, M_TSKMGR ),
-	[C_OSL_QUANTUM]	= COMBO( combo_mins_eql, OSL( _QUANTUM ) ),
+//	[C_OSL_QUANTUM]	= COMBO( combo_mins_eql, OSL( _QUANTUM ) ),
+	[C_TG_QUANTUM]		= COMBO( combo_mins_eql, TG( _QUANTUM ) ),
 };
 
 

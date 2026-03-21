@@ -1,2 +1,12 @@
 //#define ENABLE_COMPILE_KEYCODE
 //#define ONESHOT_TIMEOUT 5000
+
+#define QUICK_TAP_TERM_PER_KEY
+
+#ifdef OLED_ENABLE
+	#define OLED_DISPLAY_128X64
+	#define OLED_TIMEOUT		0
+	#define OLED_SCROLL_TIMEOUT	30000
+
+	#define OLED_FONT_H "../yubi_font.c"
+#endif
