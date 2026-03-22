@@ -1,3 +1,5 @@
+#pragma once
+
 //#define ENABLE_COMPILE_KEYCODE
 //#define ONESHOT_TIMEOUT 5000
 
