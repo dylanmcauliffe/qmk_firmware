@@ -81,7 +81,7 @@
 		"rgb_matrix": false,
 		"rgblight": true,
 		"secure": false,
-		"send_string": false,
+		"send_string": true,
 		"sequencer": false,
 		"split": false,
 		"split_led_state": false,

@@ -20,7 +20,7 @@
 // macros
 
 #define M_TSKMGR	LCTL( LSFT( KC_ESC ) )	// Control + Shift + Escape: Open Task Manager
-#define M_RDESC	LCTL( LALT( KC_HOME ) )
+//#define M_RDESC	LCTL( LALT( KC_HOME ) )
 
 #define M_UNDO		LCTL( KC_Z )
 #define M_CUT		LCTL( KC_X )
@@ -46,6 +46,7 @@
 #define LC_UNDS 	LCTL_T( KC_UNDS )
 
 #define LA_CAPS	LALT_T( KC_CAPS )
+#define LA_TAB		LALT_T( KC_TAB )
 
 #define LS_DEL		LSFT_T( KC_DEL )
 #define LS_INS		LSFT_T( KC_INS )
@@ -87,6 +88,7 @@ combo_t key_combos[] = {
 
 enum custom_keycodes {
 	KC_P00 = SAFE_RANGE,	// Numpad 00
+	M_RDESC,				// Control + Alt + Home: Escape RDP
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -97,6 +99,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			if ( record->event.pressed ) {
 				tap_code( KC_P0 );
 				tap_code( KC_P0 );
+			}
+			return false;	// Return false to ignore further processing of key
+		break;
+
+		case M_RDESC:
+			if (record->event.pressed) {
+				register_code(KC_LCTL);
+				SEND_STRING(SS_DELAY(10));
+				register_code(KC_LALT);
+				SEND_STRING(SS_DELAY(10));
+				register_code(KC_HOME);
+				SEND_STRING(SS_DELAY(10));
+			} else {
+				unregister_code(KC_HOME);
+				SEND_STRING(SS_DELAY(10));
+				unregister_code(KC_LALT);
+				SEND_STRING(SS_DELAY(10));
+				unregister_code(KC_LCTL);
 			}
 			return false;
 		break;
